@@ -42,7 +42,7 @@ export const BudgetCreateContainer = () => {
               </Input.Root>
             </div>
             <div className="space-y-2">
-              <Label.Root>Tipe</Label.Root>
+              <Label.Root>TIPE</Label.Root>
               <Select.Root>
                 <Select.Trigger>
                   <Select.Value placeholder="Pilih tipe budget" />
@@ -54,7 +54,7 @@ export const BudgetCreateContainer = () => {
               </Select.Root>
             </div>
             <div className="space-y-2">
-              <Label.Root>Kategori</Label.Root>
+              <Label.Root>KATEGORI</Label.Root>
               <Select.Root>
                 <Select.Trigger>
                   <Select.Value placeholder="Pilih kategori" />

@@ -15,6 +15,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as BudgetsRouteImport } from './routes/budgets'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MainWalletsIndexRouteImport } from './routes/main/wallets/index'
+import { Route as MainTransactionsIndexRouteImport } from './routes/main/transactions/index'
 import { Route as MainBudgetsIndexRouteImport } from './routes/main/budgets/index'
 import { Route as MainWalletsCreateRouteImport } from './routes/main/wallets/create'
 import { Route as MainBudgetsCreateRouteImport } from './routes/main/budgets/create'
@@ -49,6 +50,11 @@ const MainWalletsIndexRoute = MainWalletsIndexRouteImport.update({
   path: '/main/wallets/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MainTransactionsIndexRoute = MainTransactionsIndexRouteImport.update({
+  id: '/main/transactions/',
+  path: '/main/transactions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MainBudgetsIndexRoute = MainBudgetsIndexRouteImport.update({
   id: '/main/budgets/',
   path: '/main/budgets/',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/main/budgets/create': typeof MainBudgetsCreateRoute
   '/main/wallets/create': typeof MainWalletsCreateRoute
   '/main/budgets': typeof MainBudgetsIndexRoute
+  '/main/transactions': typeof MainTransactionsIndexRoute
   '/main/wallets': typeof MainWalletsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/main/budgets/create': typeof MainBudgetsCreateRoute
   '/main/wallets/create': typeof MainWalletsCreateRoute
   '/main/budgets': typeof MainBudgetsIndexRoute
+  '/main/transactions': typeof MainTransactionsIndexRoute
   '/main/wallets': typeof MainWalletsIndexRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/main/budgets/create': typeof MainBudgetsCreateRoute
   '/main/wallets/create': typeof MainWalletsCreateRoute
   '/main/budgets/': typeof MainBudgetsIndexRoute
+  '/main/transactions/': typeof MainTransactionsIndexRoute
   '/main/wallets/': typeof MainWalletsIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/main/budgets/create'
     | '/main/wallets/create'
     | '/main/budgets'
+    | '/main/transactions'
     | '/main/wallets'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/main/budgets/create'
     | '/main/wallets/create'
     | '/main/budgets'
+    | '/main/transactions'
     | '/main/wallets'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/main/budgets/create'
     | '/main/wallets/create'
     | '/main/budgets/'
+    | '/main/transactions/'
     | '/main/wallets/'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   MainBudgetsCreateRoute: typeof MainBudgetsCreateRoute
   MainWalletsCreateRoute: typeof MainWalletsCreateRoute
   MainBudgetsIndexRoute: typeof MainBudgetsIndexRoute
+  MainTransactionsIndexRoute: typeof MainTransactionsIndexRoute
   MainWalletsIndexRoute: typeof MainWalletsIndexRoute
 }
 
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainWalletsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/main/transactions/': {
+      id: '/main/transactions/'
+      path: '/main/transactions'
+      fullPath: '/main/transactions'
+      preLoaderRoute: typeof MainTransactionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/main/budgets/': {
       id: '/main/budgets/'
       path: '/main/budgets'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   MainBudgetsCreateRoute: MainBudgetsCreateRoute,
   MainWalletsCreateRoute: MainWalletsCreateRoute,
   MainBudgetsIndexRoute: MainBudgetsIndexRoute,
+  MainTransactionsIndexRoute: MainTransactionsIndexRoute,
   MainWalletsIndexRoute: MainWalletsIndexRoute,
 }
 export const routeTree = rootRouteImport

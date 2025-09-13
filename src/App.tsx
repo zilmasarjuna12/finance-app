@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count] = useState(0);
 
   return (
     <>
@@ -10,7 +10,7 @@ function App() {
         <p className="text-lg mb-8">Count is: {count}</p>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
