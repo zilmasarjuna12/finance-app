@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 import BackgroundGreen from "@/assets/background.svg";
 
 import {
@@ -9,9 +11,7 @@ import {
   RiWallet2Line,
 } from "@remixicon/react";
 
-import * as Label from "@/components/ui/label";
-import * as Input from "@/components/ui/input";
-import * as Select from "@/components/ui/select";
+import { BudgetCreateForm } from "../components/budget-create-form";
 
 export const BudgetCreateContainer = () => {
   return (
@@ -19,7 +19,9 @@ export const BudgetCreateContainer = () => {
       <img src={BackgroundGreen} alt="background" className="w-full" />
       <div className="flex z-1 relative px-6 text-white -mt-65">
         <div className="flex-none">
-          <RiArrowLeftSLine />
+          <Link to="..">
+            <RiArrowLeftSLine />
+          </Link>
         </div>
         <div className="grow text-center text-[18px] font-[400]">Wallet</div>
         <div className="flex-none">
@@ -28,64 +30,7 @@ export const BudgetCreateContainer = () => {
       </div>
       <div className="px-8 z-1 relative">
         <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8 mt-20">
-          <form className="space-y-5">
-            <div className="space-y-2">
-              <Label.Root>NAMA</Label.Root>
-              <Input.Root>
-                <Input.Wrapper>
-                  <Input.Input
-                    id="name"
-                    type="text"
-                    placeholder="Masukkan nama budget"
-                  />
-                </Input.Wrapper>
-              </Input.Root>
-            </div>
-            <div className="space-y-2">
-              <Label.Root>TIPE</Label.Root>
-              <Select.Root>
-                <Select.Trigger>
-                  <Select.Value placeholder="Pilih tipe budget" />
-                </Select.Trigger>
-                <Select.Content>
-                  <Select.Item value="expense">Pengeluaran</Select.Item>
-                  <Select.Item value="income">Pemasukan</Select.Item>
-                </Select.Content>
-              </Select.Root>
-            </div>
-            <div className="space-y-2">
-              <Label.Root>KATEGORI</Label.Root>
-              <Select.Root>
-                <Select.Trigger>
-                  <Select.Value placeholder="Pilih kategori" />
-                </Select.Trigger>
-                <Select.Content>
-                  <Select.Item value="salary">Gaji Bulanan</Select.Item>
-                </Select.Content>
-              </Select.Root>
-            </div>
-            <div className="space-y-2">
-              <Label.Root>Jumlah</Label.Root>
-              <Input.Root>
-                <Input.Wrapper>
-                  <Input.InlineAffix>Rp</Input.InlineAffix>
-                  <Input.Input
-                    id="amount"
-                    type="text"
-                    placeholder="Masukkan jumlah"
-                  />
-                </Input.Wrapper>
-              </Input.Root>
-            </div>
-            <div className="space-y-2">
-              <button
-                type="submit"
-                className="mt-2 relative bg-gradient-to-b to-[#3E7C78] from-[#69AEA9] text-white px-20 py-3 rounded-full font-semibold hover:shadow-xl transition trantions-duration-600 w-full"
-              >
-                Tambah
-              </button>
-            </div>
-          </form>
+          <BudgetCreateForm />
         </div>
       </div>
       <div className="fixed max-w-md mx-auto bottom-0 left-0 right-0 bg-white px-10 py-4 shadow-[0_-2px_6px_rgba(0,0,0,0.1)]">

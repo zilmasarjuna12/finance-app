@@ -1,23 +1,31 @@
+import { Link } from "@tanstack/react-router";
+
 import * as SegmentedControl from "@/components/ui/segmented-control";
 
 import {
-  RiAccountBoxLine,
   RiArrowLeftSLine,
   RiBarChart2Line,
   RiHome2Line,
   RiNotification2Line,
+  RiShoppingBag4Line,
   RiWallet2Line,
 } from "@remixicon/react";
 
 import BackgroundGreen from "@/assets/background.svg";
 
+import { useBudgets } from "../hooks/use-budget";
+
 export const BudgetsListContainer = () => {
+  const { data: budgets, isLoading } = useBudgets();
+
   return (
     <div className="min-h-screen overflow-y-auto max-h-screen scrollbar-hide">
       <img src={BackgroundGreen} alt="background" className="w-full" />
       <div className="flex z-1 relative px-6 text-white -mt-65">
-        <div className="flex-none ...">
-          <RiArrowLeftSLine />
+        <div className="flex-none">
+          <Link to="..">
+            <RiArrowLeftSLine />
+          </Link>
         </div>
         <div className="grow text-center text-[18px] font-[400]">Budget</div>
         <div className="flex-none">
@@ -36,61 +44,123 @@ export const BudgetsListContainer = () => {
                 Pemasukan
               </SegmentedControl.Trigger>
             </SegmentedControl.List>
+
             <SegmentedControl.Content value="expense" className="mt-8 px-2">
-              <div className="space-y-7">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-[500] text-[14px] text-[#222222]">
-                      Makan & Minum
-                    </p>
-                    <p className="text-[12px] text-gray-500">food</p>
+              {
+                isLoading && (
+                  <div className="space-y-7 animate-pulse">
+                    {[...Array(3)].map((_, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between"
+                      >
+                        <div>
+                          <div className="h-4 bg-gray-300 rounded w-24 mb-2"></div>
+                          <div className="h-3 bg-gray-300 rounded w-16"></div>
+                        </div>
+                        <div className="flex flex-col text-right">
+                          <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                          <div className="h-3 bg-gray-300 rounded w-16"></div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex flex-col text-right">
-                    <p className="font-[600] text-[14px] text-[#222222]">
-                      Rp 1.000.000
-                    </p>
-                    <p className="text-[12px] text-gray-500">Rp 10.000</p>
-                  </div>
+                ) /* You can replace this with a spinner */
+              }
+              {!isLoading && budgets && budgets.length > 0 && (
+                <div className="space-y-7">
+                  {budgets.map((budget) => {
+                    if (budget.type !== "expense") return null;
+
+                    return (
+                      <div
+                        key={budget.id}
+                        className="flex items-center justify-between"
+                      >
+                        <div>
+                          <p className="font-[500] text-[14px] text-[#222222]">
+                            {budget.name}
+                          </p>
+                          <p className="text-[12px] text-gray-500">
+                            {budget.category}
+                          </p>
+                        </div>
+                        <div className="flex flex-col text-right">
+                          <p className="font-[600] text-[14px] text-[#222222]">
+                            Rp {budget.amount.toLocaleString()}
+                          </p>
+                          <p className="text-[12px] text-gray-500">
+                            Rp {budget.amount.toLocaleString()}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-[500] text-[14px] text-[#222222]">
-                      Transportasi
-                    </p>
-                    <p className="text-[12px] text-gray-500">entertainment</p>
-                  </div>
-                  <div className="flex flex-col text-right">
-                    <p className="font-[600] text-[14px] text-[#222222]t">
-                      Rp 200.000
-                    </p>
-                    <p className="text-[12px] text-gray-500t">Rp 10.000</p>
-                  </div>
-                </div>
-              </div>
+              )}
             </SegmentedControl.Content>
             <SegmentedControl.Content value="income" className="mt-8 px-2">
-              <div className="space-y-7">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-[500] text-[14px] text-[#222222]">
-                      Gaji Bulanan
-                    </p>
-                    <p className="text-[12px] text-gray-500">salary</p>
+              {
+                isLoading && (
+                  <div className="space-y-7 animate-pulse">
+                    {[...Array(3)].map((_, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between"
+                      >
+                        <div>
+                          <div className="h-4 bg-gray-300 rounded w-24 mb-2"></div>
+                          <div className="h-3 bg-gray-300 rounded w-16"></div>
+                        </div>
+                        <div className="flex flex-col text-right">
+                          <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                          <div className="h-3 bg-gray-300 rounded w-16"></div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex flex-col text-right">
-                    <p className="font-[600] text-[14px] text-[#222222]">
-                      Rp 3.000.000
-                    </p>
-                    <p className="text-[12px] text-gray-500">Rp 3.000.000</p>
-                  </div>
+                ) /* You can replace this with a spinner */
+              }
+              {!isLoading && budgets && budgets.length > 0 && (
+                <div className="space-y-7">
+                  {budgets.map((budget) => {
+                    if (budget.type !== "income") return null;
+
+                    return (
+                      <div
+                        key={budget.id}
+                        className="flex items-center justify-between"
+                      >
+                        <div>
+                          <p className="font-[500] text-[14px] text-[#222222]">
+                            {budget.name}
+                          </p>
+                          <p className="text-[12px] text-gray-500">
+                            {budget.category}
+                          </p>
+                        </div>
+                        <div className="flex flex-col text-right">
+                          <p className="font-[600] text-[14px] text-[#222222]">
+                            Rp {budget.amount.toLocaleString()}
+                          </p>
+                          <p className="text-[12px] text-gray-500">
+                            Rp {budget.amount.toLocaleString()}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              </div>
+              )}
             </SegmentedControl.Content>
           </SegmentedControl.Root>
         </div>
       </div>
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-2">
-        <button className="w-14 h-14 bg-[#408782] rounded-full flex items-center justify-center shadow-lg">
+        <Link
+          to="/main/budgets/create"
+          className="w-14 h-14 bg-[#408782] rounded-full flex items-center justify-center shadow-lg"
+        >
           <svg
             className="w-6 h-6 text-white"
             fill="none"
@@ -104,25 +174,25 @@ export const BudgetsListContainer = () => {
               d="M12 4v16m8-8H4"
             />
           </svg>
-        </button>
+        </Link>
       </div>
       <div className="fixed max-w-md mx-auto bottom-0 left-0 right-0 bg-white px-10 py-4 shadow-[0_-2px_6px_rgba(0,0,0,0.1)]">
         <div className="flex items-center justify-between">
-          <div className="flex flex-col items-center">
+          <Link to="/main" className="flex flex-col items-center">
             <RiHome2Line className="text-gray-600" />
-          </div>
-          <div className="flex flex-col items-center">
-            <RiBarChart2Line className="text-gray-600" />
-          </div>
+          </Link>
+          <Link to="/main/transactions" className="flex flex-col items-center">
+            <RiBarChart2Line className="text-[#408782]" />
+          </Link>
           <div className="flex flex-col items-center">
             {/* Space for the floating button */}
           </div>
-          <div className="flex flex-col items-center">
-            <RiWallet2Line className="text-[#408782]" />
-          </div>
-          <div className="flex flex-col items-center">
-            <RiAccountBoxLine className="text-gray-600" />
-          </div>
+          <Link to="/main/wallets" className="flex flex-col items-center">
+            <RiWallet2Line className=" text-gray-600" />
+          </Link>
+          <Link to="/main/budgets" className="flex flex-col items-center">
+            <RiShoppingBag4Line className="text-gray-600" />
+          </Link>
         </div>
       </div>
     </div>

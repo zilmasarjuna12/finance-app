@@ -1,3 +1,5 @@
+import { useAuthStore } from "@/features/auth/stores/auth";
+
 // Base API Response
 export interface ApiResponse<T = any> {
   data: T;
@@ -18,6 +20,15 @@ export const api = {
       },
       ...options,
     };
+
+    const token = useAuthStore.getState().token;
+
+    if (token) {
+      config.headers = {
+        ...config.headers,
+        Authorization: `Bearer ${token}`,
+      };
+    }
 
     const response = await fetch(url, config);
 

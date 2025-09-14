@@ -1,13 +1,15 @@
+import { Link } from "@tanstack/react-router";
+
 import BackgroundGreen from "@/assets/background.svg";
 
 import {
-  RiAccountBoxLine,
   RiArrowLeftSLine,
+  RiArrowRightSLine,
   RiBarChart2Line,
+  RiExchangeDollarLine,
   RiHome2Line,
   RiNotification2Line,
-  RiArrowRightSLine,
-  RiExchangeDollarLine,
+  RiShoppingBag4Line,
   RiWallet2Line,
 } from "@remixicon/react";
 
@@ -256,21 +258,21 @@ export const TransactionListContainer = () => {
       </div>
       <div className="fixed max-w-md mx-auto bottom-0 left-0 right-0 bg-white px-10 py-4 shadow-[0_-2px_6px_rgba(0,0,0,0.1)]">
         <div className="flex items-center justify-between">
-          <div className="flex flex-col items-center">
+          <Link to="/main" className="flex flex-col items-center">
             <RiHome2Line className="text-gray-600" />
-          </div>
-          <div className="flex flex-col items-center">
-            <RiBarChart2Line className="text-gray-600" />
-          </div>
+          </Link>
+          <Link to="/main/transactions" className="flex flex-col items-center">
+            <RiBarChart2Line className="text-[#408782]" />
+          </Link>
           <div className="flex flex-col items-center">
             {/* Space for the floating button */}
           </div>
-          <div className="flex flex-col items-center">
-            <RiWallet2Line className="text-[#408782]" />
-          </div>
-          <div className="flex flex-col items-center">
-            <RiAccountBoxLine className="text-gray-600" />
-          </div>
+          <Link to="/main/wallets" className="flex flex-col items-center">
+            <RiWallet2Line className=" text-gray-600" />
+          </Link>
+          <Link to="/main/budgets" className="flex flex-col items-center">
+            <RiShoppingBag4Line className="text-gray-600" />
+          </Link>
         </div>
       </div>
     </div>
