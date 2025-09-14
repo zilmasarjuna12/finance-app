@@ -20,6 +20,7 @@ import { Route as MainWalletsIndexRouteImport } from './routes/main/wallets/inde
 import { Route as MainTransactionsIndexRouteImport } from './routes/main/transactions/index'
 import { Route as MainBudgetsIndexRouteImport } from './routes/main/budgets/index'
 import { Route as MainWalletsCreateRouteImport } from './routes/main/wallets/create'
+import { Route as MainTransactionsCreateRouteImport } from './routes/main/transactions/create'
 import { Route as MainBudgetsCreateRouteImport } from './routes/main/budgets/create'
 
 const WalletsRoute = WalletsRouteImport.update({
@@ -77,6 +78,11 @@ const MainWalletsCreateRoute = MainWalletsCreateRouteImport.update({
   path: '/wallets/create',
   getParentRoute: () => MainRoute,
 } as any)
+const MainTransactionsCreateRoute = MainTransactionsCreateRouteImport.update({
+  id: '/transactions/create',
+  path: '/transactions/create',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainBudgetsCreateRoute = MainBudgetsCreateRouteImport.update({
   id: '/budgets/create',
   path: '/budgets/create',
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/wallets': typeof WalletsRoute
   '/main/': typeof MainIndexRoute
   '/main/budgets/create': typeof MainBudgetsCreateRoute
+  '/main/transactions/create': typeof MainTransactionsCreateRoute
   '/main/wallets/create': typeof MainWalletsCreateRoute
   '/main/budgets': typeof MainBudgetsIndexRoute
   '/main/transactions': typeof MainTransactionsIndexRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/wallets': typeof WalletsRoute
   '/main': typeof MainIndexRoute
   '/main/budgets/create': typeof MainBudgetsCreateRoute
+  '/main/transactions/create': typeof MainTransactionsCreateRoute
   '/main/wallets/create': typeof MainWalletsCreateRoute
   '/main/budgets': typeof MainBudgetsIndexRoute
   '/main/transactions': typeof MainTransactionsIndexRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/wallets': typeof WalletsRoute
   '/main/': typeof MainIndexRoute
   '/main/budgets/create': typeof MainBudgetsCreateRoute
+  '/main/transactions/create': typeof MainTransactionsCreateRoute
   '/main/wallets/create': typeof MainWalletsCreateRoute
   '/main/budgets/': typeof MainBudgetsIndexRoute
   '/main/transactions/': typeof MainTransactionsIndexRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/wallets'
     | '/main/'
     | '/main/budgets/create'
+    | '/main/transactions/create'
     | '/main/wallets/create'
     | '/main/budgets'
     | '/main/transactions'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/wallets'
     | '/main'
     | '/main/budgets/create'
+    | '/main/transactions/create'
     | '/main/wallets/create'
     | '/main/budgets'
     | '/main/transactions'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/wallets'
     | '/main/'
     | '/main/budgets/create'
+    | '/main/transactions/create'
     | '/main/wallets/create'
     | '/main/budgets/'
     | '/main/transactions/'
@@ -257,6 +269,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainWalletsCreateRouteImport
       parentRoute: typeof MainRoute
     }
+    '/main/transactions/create': {
+      id: '/main/transactions/create'
+      path: '/transactions/create'
+      fullPath: '/main/transactions/create'
+      preLoaderRoute: typeof MainTransactionsCreateRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/main/budgets/create': {
       id: '/main/budgets/create'
       path: '/budgets/create'
@@ -270,6 +289,7 @@ declare module '@tanstack/react-router' {
 interface MainRouteChildren {
   MainIndexRoute: typeof MainIndexRoute
   MainBudgetsCreateRoute: typeof MainBudgetsCreateRoute
+  MainTransactionsCreateRoute: typeof MainTransactionsCreateRoute
   MainWalletsCreateRoute: typeof MainWalletsCreateRoute
   MainBudgetsIndexRoute: typeof MainBudgetsIndexRoute
   MainTransactionsIndexRoute: typeof MainTransactionsIndexRoute
@@ -279,6 +299,7 @@ interface MainRouteChildren {
 const MainRouteChildren: MainRouteChildren = {
   MainIndexRoute: MainIndexRoute,
   MainBudgetsCreateRoute: MainBudgetsCreateRoute,
+  MainTransactionsCreateRoute: MainTransactionsCreateRoute,
   MainWalletsCreateRoute: MainWalletsCreateRoute,
   MainBudgetsIndexRoute: MainBudgetsIndexRoute,
   MainTransactionsIndexRoute: MainTransactionsIndexRoute,

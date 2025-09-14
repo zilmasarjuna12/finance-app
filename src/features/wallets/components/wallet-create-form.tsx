@@ -9,15 +9,10 @@ import { CreateWalletFormData, createWalletSchema } from "../schemas";
 import type { WalletCreateRequest } from "../types";
 
 export const WalletCreateForm = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm<CreateWalletFormData>({
-    resolver: zodResolver(createWalletSchema),
-  });
+  const { register, handleSubmit, setValue, watch } =
+    useForm<CreateWalletFormData>({
+      resolver: zodResolver(createWalletSchema),
+    });
 
   const createWallet = useCreateWallet();
 

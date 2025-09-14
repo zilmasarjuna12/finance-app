@@ -17,13 +17,13 @@ import { useTransactions } from "../hooks/use-transaction";
 export const TransactionListContainer = () => {
   const { data: transactions, isLoading } = useTransactions();
 
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp * 1000).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
+  // const formatDate = (timestamp: number) => {
+  //   return new Date(timestamp * 1000).toLocaleDateString("en-US", {
+  //     month: "short",
+  //     day: "numeric",
+  //     year: "numeric",
+  //   });
+  // };
 
   const formatAmount = (amount: number, type: string) => {
     const sign = type === "income" ? "+" : "-";
@@ -90,7 +90,7 @@ export const TransactionListContainer = () => {
                           {transaction.note}
                         </p>
                         <p className="text-[12px] text-gray-500">
-                          {formatDate(transaction.transcation_date)}
+                          {/* {formatDate(transaction.transcation_date)} */}
                         </p>
                       </div>
                     </div>
@@ -110,7 +110,10 @@ export const TransactionListContainer = () => {
         </div>
       </div>
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-2">
-        <button className="w-14 h-14 bg-[#408782] rounded-full flex items-center justify-center shadow-lg">
+        <Link
+          to="/main/transactions/create"
+          className="w-14 h-14 bg-[#408782] rounded-full flex items-center justify-center shadow-lg"
+        >
           <svg
             className="w-6 h-6 text-white"
             fill="none"
@@ -124,7 +127,7 @@ export const TransactionListContainer = () => {
               d="M12 4v16m8-8H4"
             />
           </svg>
-        </button>
+        </Link>
       </div>
       <div className="fixed max-w-md mx-auto bottom-0 left-0 right-0 bg-white px-10 py-4 shadow-[0_-2px_6px_rgba(0,0,0,0.1)]">
         <div className="flex items-center justify-between">
