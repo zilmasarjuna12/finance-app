@@ -17,14 +17,6 @@ import { useTransactions } from "../hooks/use-transaction";
 export const TransactionListContainer = () => {
   const { data: transactions, isLoading } = useTransactions();
 
-  // const formatDate = (timestamp: number) => {
-  //   return new Date(timestamp * 1000).toLocaleDateString("en-US", {
-  //     month: "short",
-  //     day: "numeric",
-  //     year: "numeric",
-  //   });
-  // };
-
   const formatAmount = (amount: number, type: string) => {
     const sign = type === "income" ? "+" : "-";
     return `${sign}$${amount.toFixed(2)}`;

@@ -11,8 +11,19 @@ import {
   RiWallet2Line,
 } from "@remixicon/react";
 import { TransactionCreateForm } from "../components/transaction-create-form";
+import { Budget } from "@/features/budgets/types";
+import { Wallet } from "@/features/wallets/types";
 
-export const TransactionCreateContainer = () => {
+type TransactionCreateContainerProps = {
+  budgets: Budget[];
+  wallets: Wallet[];
+};
+
+export const TransactionCreateContainer = ({
+  budgets,
+  wallets,
+}: TransactionCreateContainerProps) => {
+  console.log(budgets, wallets);
   return (
     <div className="min-h-screen overflow-auto max-h-screen">
       <img src={BackgroundGreen} alt="background" className="w-full" />
@@ -29,7 +40,7 @@ export const TransactionCreateContainer = () => {
       </div>
       <div className="px-8 z-1 relative">
         <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-8 mt-20">
-          <TransactionCreateForm />
+          <TransactionCreateForm budgets={budgets} wallets={wallets} />
         </div>
       </div>
       <div className="fixed max-w-md mx-auto bottom-0 left-0 right-0 bg-white px-10 py-4 shadow-[0_-2px_6px_rgba(0,0,0,0.1)]">

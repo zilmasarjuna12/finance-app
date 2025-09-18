@@ -2,9 +2,9 @@ import { ApiResponse } from "@/utils/api";
 
 export interface TransactionCreateRequest {
   wallet_id: string;
+  budget_id: string;
   amount: number;
   type: "expense" | "income";
-  category: string;
   note?: string;
   transaction_date: number;
 }

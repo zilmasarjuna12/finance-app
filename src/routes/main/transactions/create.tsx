@@ -1,10 +1,21 @@
 import { TransactionCreateContainer } from "@/features/transactions";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Await } from "@tanstack/react-router";
+
+import { budgetService } from "@/features/budgets/services";
+import { walletService } from "@/features/wallets/services";
 
 export const Route = createFileRoute("/main/transactions/create")({
+  loader: async () => {
+    const budgets = await budgetService.getBudgets();
+    const wallets = await walletService.getWallets();
+
+    return { budgets: budgets.data, wallets: wallets.data };
+  },
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return <TransactionCreateContainer />;
+  const { budgets, wallets } = Route.useLoaderData();
+
+  return <TransactionCreateContainer budgets={budgets} wallets={wallets} />;
 }
